@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://137vxqurumuf"]
+
+[node name="hit_particles" type="CPUParticles2D"]
+emitting = false
+amount = 16
+one_shot = true
+speed_scale = 1.62
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+spread = 30.0
+gravity = Vector2(0, 290)
+initial_velocity_max = 290.0
+angular_velocity_max = 290.0
+scale_amount_min = 6.4
+scale_amount_max = 6.4
