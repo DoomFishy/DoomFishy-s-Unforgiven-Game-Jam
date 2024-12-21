@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cpkn2jvepkyas"
+path="res://.godot/imported/whoosh type2 02.wav-dcc66b5c02547a997b83b2b2822b5a60.sample"
+
+[deps]
+
+source_file="res://assets/sfx/whoosh type2 02.wav"
+dest_files=["res://.godot/imported/whoosh type2 02.wav-dcc66b5c02547a997b83b2b2822b5a60.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
