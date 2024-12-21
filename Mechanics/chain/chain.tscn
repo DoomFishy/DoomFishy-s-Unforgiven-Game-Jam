@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1mfpqmdwletb"]
+
+[ext_resource type="Texture2D" uid="uid://tr8sexsc4b8s" path="res://assets/player/chain 2.png" id="1_2efi4"]
+[ext_resource type="Script" path="res://Mechanics/chain/chain.gd" id="2_fmt6a"]
+
+[node name="chain" type="Sprite2D"]
+texture_repeat = 2
+rotation = -1.5708
+texture = ExtResource("1_2efi4")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+script = ExtResource("2_fmt6a")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 500)

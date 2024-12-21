@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://cegw14noltd1"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_caub6"]
+[ext_resource type="Texture2D" uid="uid://cfxsblqw07rm2" path="res://assets/play.png" id="1_lnoxa"]
+[ext_resource type="Texture2D" uid="uid://qigopdet1s18" path="res://assets/title.png" id="2_2j6ah"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vs3h5"]
+size = Vector2(196, 88)
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_caub6")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1214.0
+offset_bottom = 674.0
+color = Color(0, 0, 0, 1)
+
+[node name="play button" type="Area2D" parent="."]
+position = Vector2(-48, 57)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="play button"]
+position = Vector2(628, 390)
+shape = SubResource("RectangleShape2D_vs3h5")
+
+[node name="Sprite2D" type="Sprite2D" parent="play button/CollisionShape2D"]
+position = Vector2(2, 0)
+scale = Vector2(3.96875, 2.82813)
+texture = ExtResource("1_lnoxa")
+
+[node name="Label" type="Label" parent="play button"]
+offset_left = 584.0
+offset_top = 363.0
+offset_right = 739.0
+offset_bottom = 446.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 38
+text = "PLAY"
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(588, 187)
+texture = ExtResource("2_2j6ah")
+
+[connection signal="mouse_entered" from="play button" to="." method="_on_play_button_mouse_entered"]
+[connection signal="mouse_exited" from="play button" to="." method="_on_play_button_mouse_exited"]

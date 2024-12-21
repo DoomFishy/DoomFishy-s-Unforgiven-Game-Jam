@@ -1,0 +1,208 @@
+[gd_scene load_steps=16 format=3 uid="uid://dio0shefvgyuo"]
+
+[ext_resource type="Script" path="res://Mechanics/Sacrifice_menu/ability_removal_menu.gd" id="1_g11ve"]
+[ext_resource type="Shader" path="res://Player/player.gdshader" id="2_burx5"]
+[ext_resource type="Texture2D" uid="uid://c57q2y0kbv1yx" path="res://assets/player/ability - dash.png" id="3_504g4"]
+[ext_resource type="Texture2D" uid="uid://sbllaybpicdi" path="res://assets/player/ability - deflect.png" id="4_adjjh"]
+[ext_resource type="Texture2D" uid="uid://b8wratbvhdrcx" path="res://assets/player/ability - time.png" id="5_2t4ux"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dbxg1"]
+shader = ExtResource("2_burx5")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_46p6t"]
+radius = 20.5535
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pcnto"]
+shader = ExtResource("2_burx5")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8ofvq"]
+radius = 19.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g0w3h"]
+shader = ExtResource("2_burx5")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wsq61"]
+radius = 19.3792
+
+[sub_resource type="Animation" id="Animation_vihah"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_eq88e"]
+resource_name = "intro"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"transition_in"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_abvf3"]
+resource_name = "outro"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"transition_out"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_18qgv"]
+_data = {
+"RESET": SubResource("Animation_vihah"),
+"intro": SubResource("Animation_eq88e"),
+"outro": SubResource("Animation_abvf3")
+}
+
+[node name="ability_removal_menu" type="Node2D"]
+script = ExtResource("1_g11ve")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1275.0
+offset_bottom = 682.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 344.0
+offset_top = 78.0
+offset_right = 873.0
+offset_bottom = 168.0
+theme_override_font_sizes/font_size = 30
+text = "Choose A Fragment Of Essence
+                    To Sacrifice"
+metadata/_edit_use_anchors_ = true
+
+[node name="Ability-Dash" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_dbxg1")
+position = Vector2(222, 319)
+scale = Vector2(3, 3)
+texture = ExtResource("3_504g4")
+
+[node name="Dash" type="Area2D" parent="Ability-Dash"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ability-Dash/Dash"]
+shape = SubResource("CircleShape2D_46p6t")
+
+[node name="Ability-Deflect" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_pcnto")
+position = Vector2(570, 319)
+scale = Vector2(3, 3)
+texture = ExtResource("4_adjjh")
+
+[node name="Deflect" type="Area2D" parent="Ability-Deflect"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ability-Deflect/Deflect"]
+shape = SubResource("CircleShape2D_8ofvq")
+
+[node name="Ability-Time" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_g0w3h")
+position = Vector2(926, 319)
+scale = Vector2(3, 3)
+texture = ExtResource("5_2t4ux")
+
+[node name="Time" type="Area2D" parent="Ability-Time"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ability-Time/Time"]
+shape = SubResource("CircleShape2D_wsq61")
+
+[node name="dash" type="Label" parent="."]
+offset_left = 188.0
+offset_top = 403.0
+offset_right = 258.0
+offset_bottom = 446.0
+theme_override_font_sizes/font_size = 29
+text = "Dash"
+metadata/_edit_use_anchors_ = true
+
+[node name="deflect" type="Label" parent="."]
+offset_left = 523.0
+offset_top = 403.0
+offset_right = 622.0
+offset_bottom = 446.0
+theme_override_font_sizes/font_size = 29
+text = "Deflect"
+metadata/_edit_use_anchors_ = true
+
+[node name="timeslow" type="Label" parent="."]
+offset_left = 862.0
+offset_top = 402.0
+offset_right = 995.0
+offset_bottom = 445.0
+theme_override_font_sizes/font_size = 29
+text = "Timeslow"
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_right = 1268.0
+offset_bottom = 689.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_18qgv")
+}
+
+[connection signal="mouse_entered" from="Ability-Dash/Dash" to="." method="_on_dash_mouse_entered"]
+[connection signal="mouse_exited" from="Ability-Dash/Dash" to="." method="_on_dash_mouse_exited"]
+[connection signal="mouse_entered" from="Ability-Deflect/Deflect" to="." method="_on_deflect_mouse_entered"]
+[connection signal="mouse_exited" from="Ability-Deflect/Deflect" to="." method="_on_deflect_mouse_exited"]
+[connection signal="mouse_entered" from="Ability-Time/Time" to="." method="_on_time_mouse_entered"]
+[connection signal="mouse_exited" from="Ability-Time/Time" to="." method="_on_time_mouse_exited"]

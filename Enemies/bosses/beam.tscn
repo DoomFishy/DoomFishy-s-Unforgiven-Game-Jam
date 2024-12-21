@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7kvcip0r65l4"]
+
+[ext_resource type="Script" path="res://Enemies/bosses/beam.gd" id="1_h8ff7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m3y44"]
+size = Vector2(20, 81)
+
+[node name="beam" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_h8ff7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -19.0
+offset_top = -552.0
+offset_right = 21.0
+offset_bottom = -275.0
+scale = Vector2(1, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+scale = Vector2(1, 13.56)
+shape = SubResource("RectangleShape2D_m3y44")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

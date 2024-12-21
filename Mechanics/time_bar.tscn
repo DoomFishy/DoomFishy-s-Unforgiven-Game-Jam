@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://bh46l1cjsbwym"]
+
+[ext_resource type="Script" path="res://Mechanics/time_bar.gd" id="1_sur68"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gtafk"]
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_web7x"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[node name="time_bar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sur68")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_right = 690.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_gtafk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_web7x")
+show_percentage = false
+
+[node name="freeze_timer_clone" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="freeze_timer_clone" to="." method="_on_freeze_timer_clone_timeout"]

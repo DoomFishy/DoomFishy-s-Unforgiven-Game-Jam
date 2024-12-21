@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://du7jtmlqj8qxf"]
+
+[ext_resource type="Script" path="res://Enemies/shoot/bullet.gd" id="1_aywfo"]
+[ext_resource type="Texture2D" uid="uid://bbqsjp6n3ed5j" path="res://assets/enemies/long-range/bullet.png" id="1_l58mp"]
+[ext_resource type="Shader" path="res://Player/player.gdshader" id="2_en410"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lni24"]
+shader = ExtResource("2_en410")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gjbxn"]
+size = Vector2(12, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a6a0n"]
+size = Vector2(23, 20)
+
+[node name="bullet" type="CharacterBody2D" groups=["bullet"]]
+scale = Vector2(2, 2)
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_aywfo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_lni24")
+scale = Vector2(2, 2)
+texture = ExtResource("1_l58mp")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(12.5, 0)
+shape = SubResource("RectangleShape2D_gjbxn")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-8, 0)
+shape = SubResource("RectangleShape2D_gjbxn")
+
+[node name="bullet time despawn" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 0)
+shape = SubResource("RectangleShape2D_a6a0n")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="bullet time despawn" to="." method="_on_deflect_time_timeout"]

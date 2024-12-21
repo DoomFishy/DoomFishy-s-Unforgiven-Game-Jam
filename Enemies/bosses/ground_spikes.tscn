@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfe56wmo7cqug"]
+
+[ext_resource type="Texture2D" uid="uid://d3gfhi45gbs6v" path="res://assets/boss/mage/spikes.png" id="1_u8qvi"]
+[ext_resource type="Script" path="res://Enemies/bosses/ground_spikes.gd" id="1_vpn8f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_usd5a"]
+size = Vector2(1388, 126.5)
+
+[node name="ground_spikes" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_vpn8f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(6, -41)
+scale = Vector2(4.563, 9.328)
+texture = ExtResource("1_u8qvi")
+region_enabled = true
+region_rect = Rect2(0, 0, 304.505, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -26.75)
+shape = SubResource("RectangleShape2D_usd5a")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
